@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.7.1.min.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+    <style>
+        .mauDo {
+            font-size: 100%;
+            color: red;
+        }
+        
+        [class*=col-] {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        h3,
+        .col-4 {
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var i = 2;
+            $("#btnDK").click(function() {
+                $("#myModal").modal();
+            })
+
+            function kiemTraMa() {
+                var maTest = /^(K16-)[0-9]{9}$/;
+                var maInp = $("#txtMa").val();
+                var kq = maTest.test(maInp);
+                if (kq == false)
+                    alert("Nhập sai");
+            }
+            $("#txtMa").blur(kiemTraMa);
+
+            function kiemHT() {
+                var maTenKT = /(^[A-Z]{1}[a-z]+)(\s[A-Z]{1}[a-z]*)+$/;
+                var maTenInp = $("#txtHT").val();
+                var kq = maTenKT.test(maTenInp);
+                if (kq == false)
+                    alert("Nhập sai");
+            }
+            $("#txtHT").blur(kiemHT);
+
+            function kiemNgay() {
+                var maNgayKT = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/;
+                var maNgayInp = $("#txtNgay").val();
+                var kq = maNgayKT.test(maNgayInp);
+                if (kq == false)
+                    alert("Nhập sai");
+            }
+            $("#txtNgay").blur(kiemNgay);
+
+            function kiemSDT() {
+                var maSDTKT = /^0\d{3}-\d{3}-\d{3}$/;
+                var maSDTInp = $("#txtSDT").val();
+                var kq = maSDTKT.test(maSDTInp);
+                if (kq == false)
+                    alert("Nhập sai");
+            }
+            $("#txtSDT").blur(kiemSDT);
+
+            function kiemMail() {
+                var maMailKT = /@iuh.edu.vn$/;
+                var maMailInp = $("#txtDC").val();
+                var kq = maMailKT.test(maMailInp);
+                if (kq == false)
+                    alert("Nhập sai");
+            }
+            $("#txtDC").blur(kiemMail);
+
+
+            $("#btnSave").click(function() {
+                var ma = $("#txtMa").val();
+                var ht = $("#txtHT").val();
+                var lop = $("#txtLop").val();
+                var ngay = $("#txtNgay").val();
+                var sdt = $("#txtSDT").val();
+                var mail = $("#txtDC").val();
+                var them = "<tr><td>" + i++ + "</td><td>" + ma + "</td><td>" +
+                    ht + "</td><td>" + lop + "</td><td>" +
+                    ngay + "</td><td>" + sdt + "</td><td>" + mail + "</td><td>";
+
+                $("#tbDanhSach").append(them);
+                $("#myModal").modal("hide");
+                return true;
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <img src="../IMG/HEADER.PNG" alt="" width="100%">
+            </div>
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="#" class="nav-link">Đăng nhập</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="btnDK">Đăng ký</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <h3>DANH SÁCH THAM GIA ĐỘI ROBOCON KHOA CNTT</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table" id="tbDanhSach">
+                <tr>
+                    <th>STT</th>
+                    <th>Mã thành viên</th>
+                    <th>Họ tên</th>
+                    <th>Lớp</th>
+                    <th>Ngày tham gia</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <th>K16-123456789</th>
+                    <th>Tran Thanh Kha</th>
+                    <th>DHKTPM16ATT</th>
+                    <th>20/02/2022</th>
+                    <th>0909-123-123</th>
+                    <th>thanhkha@iuh.edu.vn</th>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-4 col-md-4">SVTH.....</div>
+            <div class="col-4 col-md-4">Mã số sinh viên.....</div>
+            <div class="col-4 col-md-4">Lớp DHKTPM16.....</div>
+        </div>
+
+        <div class="row">
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>THÔNG TIN CÁ NHÂN</h5>
+                            <Button type="button" class="close" data-dismiss="modal">&times;</Button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-control">
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Mã thành viên: </label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="K16-123456789" id="txtMa">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbMa">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Họ tên: </label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Họ tên: Tran Anh Dung" id="txtHT">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbTen">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Lớp:</label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Lớp: DHKTPM16ATT" id="txtLop">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbLop">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Ngày tham gia:</label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="txtNgay">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbNgay">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Số điện thoại:</label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="SDT: 0xxx-xxx-xxx" id="txtSDT">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbSDT">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group p-1">
+                                    <div class="col-3 col-sm-3">
+                                        <label for="">Email:</label>
+                                    </div>
+                                    <div class="col-6 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Email: xxxxxx@iuh.edu.vn" id="txtDC">
+                                    </div>
+                                    <div class="col-3 col-sm-3 p-2">
+                                        <span id="tbDC">*</span>
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    <div class="col-sm-12">
+                                        <input type="button" value="Lưu" id="btnSave" class="btn btn-success btn-block">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
